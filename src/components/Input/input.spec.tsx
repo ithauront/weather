@@ -10,7 +10,7 @@ test("Should render without activity indicator",()=>{
 })
 
 test('if render with activity indicator',()=>{
-    render(<Input />)
+    render(<Input isLoading/>)
    const activityIndicator = screen.getByTestId('activity-indicator')
 
    expect(activityIndicator).toBeTruthy()
