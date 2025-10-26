@@ -19,3 +19,5 @@ web-build/
 .env
 
 weather.md
+__tests__/coverage
+eas.json
