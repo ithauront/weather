@@ -21,3 +21,5 @@ web-build/
 weather.md
 __tests__/coverage
 eas.json
+android
+ios
