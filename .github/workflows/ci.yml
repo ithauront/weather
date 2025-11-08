@@ -4,11 +4,13 @@ on:
   push:
     branches:
       - main
+#on:
+#  workflow_dispatch:
 
 jobs:
   CI:
     name: Continuos Integration
-    runs-on: ubunto-latest
+    runs-on: ubuntu-latest
 
     steps: 
       - name: Checkout repository
