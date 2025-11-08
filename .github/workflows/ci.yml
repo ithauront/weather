@@ -8,7 +8,7 @@ on:
 jobs:
   CI:
     name: Continuos Integration
-    runs-on: ubunto-latest
+    runs-on: ubuntu-latest
 
     steps: 
       - name: Checkout repository
@@ -19,8 +19,8 @@ jobs:
         with:
           node-version: 18.x
         
-      - name: Install dependencies (lockfile respected)
-        run: npm ci
+      - name: Install dependencies
+        run: npm install
 
       - name: Run tests
         run: npm test
