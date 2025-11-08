@@ -20,45 +20,35 @@ describe('Screen: Dashboard', ()=>{
     test('if show city wheater', async()=>{
         jest.spyOn(api, 'get').mockResolvedValue({data: mockWeatherAPIResponse})
 
-   
-
-
         render(<Dashboard />)
         
-        await waitFor(()=> expect(screen.findByText(/rio do sul/i)).toBeTruthy())
-        await waitFor(()=> expect(screen.findByText(/Céu limpo/i)).toBeTruthy()) 
+       
+        expect(await screen.findByText(/rio do sul/i)).toBeTruthy();
+        expect(await screen.findByText(/Céu limpo/i)).toBeTruthy();
         
 
     })
 
-    test('if can show another city selected weather', async()=>{
+test('if can show another city selected weather', async () => {
+  jest.spyOn(api, 'get')
+    .mockResolvedValueOnce({ data: mockWeatherAPIResponse })
+    .mockResolvedValueOnce({ data: mockCityApiResponse })
+    .mockResolvedValueOnce({ data: mockWeatherAPIResponse });
 
-        jest.spyOn(api, 'get')
-        .mockResolvedValueOnce({data: mockWeatherAPIResponse})
-        .mockResolvedValueOnce({data: mockCityApiResponse})
-        .mockResolvedValueOnce({data: mockWeatherAPIResponse})
+  render(<Dashboard />);
 
-       render(<Dashboard />)
+  await waitForElementToBeRemoved(() => screen.getByTestId('loading'));
 
-        await waitForElementToBeRemoved(()=>screen.getByTestId('loading'))
+  const cityName = 'São Paulo';
 
-        const cityName = 'São Paulo'
+  const search = await screen.findByTestId('search-input');
+  fireEvent.changeText(search, cityName);
 
-        await waitFor(()=>act(()=>{
-            const search = screen.getByTestId('search-input')
-            fireEvent.changeText(search, cityName)
-        }))
+  const cityOption = await screen.findByText(cityName, { exact: false });
+  fireEvent.press(cityOption);
 
-        await waitFor(()=>act(()=>{
-            fireEvent.press(screen.getByText(cityName, {exact: false}))
-        }))
-
-        const newCity = await screen.findByText(/são paulo/i)
-        const forecast = await screen.findByText(/Céu limpo/i)
-
-        expect(newCity).toBeTruthy()
-        expect(forecast).toBeTruthy()
-
-    })
+  expect(await screen.findByText(/são paulo/i)).toBeTruthy();
+  expect(await screen.findByText(/Céu limpo/i)).toBeTruthy();
+});
 
 })
