@@ -24,13 +24,10 @@ describe('Screen: Dashboard', ()=>{
 
 
         render(<Dashboard />)
-
-        const cityName = await waitFor(()=>screen.findByText(/rio do sul/i))
-        const forecast = await waitFor(()=>screen.findByText(/Céu limpo/i)) 
         
-
-        expect(cityName).toBeTruthy()
-        expect(forecast).toBeTruthy()
+        await waitFor(()=> expect(screen.findByText(/rio do sul/i)).toBeTruthy())
+        await waitFor(()=> expect(screen.findByText(/Céu limpo/i)).toBeTruthy()) 
+        
 
     })
 
