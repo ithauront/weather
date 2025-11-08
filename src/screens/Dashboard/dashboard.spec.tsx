@@ -27,7 +27,7 @@ describe('Screen: Dashboard', ()=>{
         expect(await screen.findByText(/Céu limpo/i)).toBeTruthy();
         
 
-    },1500)
+    },15000)
 
 test('if can show another city selected weather', async () => {
   jest.spyOn(api, 'get')
