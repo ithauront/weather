@@ -7,16 +7,31 @@
 
     "preview": {
       "android": {
-        "distribution": "internal"
+        "distribution": "internal",
+        "autoIncrement": "versionCode"
       },
       "ios": {
         "simulator": true
-      }
+      },
+      "autoIncrement": true
     },
 
     "production": {
+      "autoIncrement": true,
+      "android": {
+        "autoIncrement": "versionCode"
+      }
     }
 
+  },
+  "submit": {
+    "preview": {
+      "android": {
+        "track": "internal",
+        "serviceAccountKeyPath": "./google-services.json",
+        "releaseStatus": "draft"
+      }
+    }
   }
  
 }

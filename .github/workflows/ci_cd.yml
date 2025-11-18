@@ -54,4 +54,4 @@ jobs:
           base64 -d -i google-services.json.b64 > google-services.json
 
       - name: Build
-        run: eas build --platform android --profile preview --non-interactive --no-wait
+        run: eas build --platform android --profile production --non-interactive --auto-submit-with-profile*preview --no-wait
