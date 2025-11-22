@@ -4,25 +4,29 @@
     "appVersionSource": "remote"
   },
   "build": {
-
     "preview": {
       "android": {
         "distribution": "internal",
         "autoIncrement": "versionCode"
       },
       "ios": {
-        "simulator": true
+        "simulator": true,
+        "autoIncrement": "buildNumber"
       },
-      "autoIncrement": true
+      "autoIncrement": true,
+      "channel": "preview"
     },
-
     "production": {
       "autoIncrement": true,
       "android": {
         "autoIncrement": "versionCode"
-      }
+      },
+      "ios": {
+        "image": "latest",
+        "autoIncrement": "buildNumber"
+      },
+      "channel": "production"
     }
-
   },
   "submit": {
     "preview": {
@@ -30,8 +34,11 @@
         "track": "internal",
         "serviceAccountKeyPath": "./google-services.json",
         "releaseStatus": "draft"
+      },
+      "ios": {
+        "appleId": "iurithauront@gmail.com",
+        "ascAppId": "1111111"
       }
     }
   }
- 
 }
